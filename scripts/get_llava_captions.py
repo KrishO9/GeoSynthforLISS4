@@ -4,7 +4,7 @@ from tqdm import tqdm
 import json
 
 files = json.load(open("file_list.json"))
-captioner = pipeline("image-to-text", model="unsloth/llava-1.5-7b-hf-bnb-4bit", device=0)
+captioner = pipeline("image-to-text", model="unsloth/llava-1.5-7b-hf-bnb-4bit")
 
 d = {}
 
