@@ -9,7 +9,7 @@ captioner = pipeline("image-to-text", model="unsloth/llava-1.5-7b-hf-bnb-4bit")
 d = {}
 
 for i in tqdm(range(len(files))):
-    image = Image.open(l[i]["target"])
+    image = Image.open(files[i]["target"])
     d[files[i]["target"]] = (
         captioner(
             image,
