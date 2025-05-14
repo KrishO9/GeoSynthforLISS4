@@ -8,7 +8,7 @@ import os
 
 
 # Configs
-resume_path = "GeoSynthforLISS4/scripts/control_sd21_ini.ckpt"
+resume_path = "scripts/control_sd21_ini.ckpt"
 batch_size = 4
 logger_freq = 2000
 learning_rate = 1e-5
@@ -17,7 +17,7 @@ only_mid_control = False
 
 
 # First use cpu to load models. Pytorch Lightning will automatically move it to GPUs.
-model = create_model("GeoSynthforLISS4/scripts/models/cldm_v21.yaml").cpu()
+model = create_model("scripts/models/cldm_v21.yaml").cpu()
 model.load_state_dict(load_state_dict(resume_path, location="cpu"))
 model.learning_rate = learning_rate
 model.sd_locked = sd_locked
@@ -30,8 +30,8 @@ checkpoint = ModelCheckpoint(
 )
 # Misc
 dataset = Dataset(
-    prompt_path="GeoSynthforLISS4/scripts/prompt_with_locations.json",
-    location_embeds_path="GeoSynthforLISS4/scripts/location_embeds.npy",
+    prompt_path="scripts/prompt_with_locations.json",
+    location_embeds_path="scripts/location_embeds.npy",
 )
 dataloader = DataLoader(
     dataset, num_workers=4, batch_size=batch_size, shuffle=True, persistent_workers=True
