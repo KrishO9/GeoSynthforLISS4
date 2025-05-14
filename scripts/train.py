@@ -1,8 +1,8 @@
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 from data import Dataset
-from ControlNet.cldm.logger import ImageLogger
-from ControlNet.cldm.model import create_model, load_state_dict
+from ..ControlNet.cldm.logger import ImageLogger
+from ..ControlNet.cldm.model import create_model, load_state_dict
 from pytorch_lightning.callbacks import ModelCheckpoint
 import os
 
