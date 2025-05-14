@@ -201,10 +201,21 @@ class FrozenOpenCLIPEmbedder(AbstractEncoder):
         for param in self.parameters():
             param.requires_grad = False
 
+    # def forward(self, text):
+    #     tokens = open_clip.tokenize(text)
+    #     z = self.encode_with_transformer(tokens.to(self.device))
+    #     return z
+
     def forward(self, text):
+        # Inside FrozenOpenCLIPEmbedder.forward, if tokens are not padded:
         tokens = open_clip.tokenize(text)
+        if tokens.shape[1] < self.max_length:
+            padding_size = self.max_length - tokens.shape[1]
+            # Assuming 0 is the padding token ID for open_clip, or use tokenizer.pad_token_id
+            padding = torch.zeros((tokens.shape[0], padding_size), dtype=tokens.dtype, device=tokens.device)
+            tokens = torch.cat([tokens, padding], dim=1)
+        # tokens should now be [batch_size, self.max_length]
         z = self.encode_with_transformer(tokens.to(self.device))
-        return z
 
     def encode_with_transformer(self, text):
         x = self.model.token_embedding(text)  # [batch_size, n_ctx, d_model]
@@ -216,6 +227,7 @@ class FrozenOpenCLIPEmbedder(AbstractEncoder):
         return x
 
     def text_transformer_forward(self, x: torch.Tensor, attn_mask=None):
+        
         for i, r in enumerate(self.model.transformer.resblocks):
             if i == len(self.model.transformer.resblocks) - self.layer_idx:
                 break
