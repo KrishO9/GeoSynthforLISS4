@@ -1,14 +1,14 @@
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
-from data import Dataset
-from ..ControlNet.cldm.logger import ImageLogger
-from ..ControlNet.cldm.model import create_model, load_state_dict
+from scripts.data import Dataset
+from ControlNet.cldm.logger import ImageLogger
+from ControlNet.cldm.model import create_model, load_state_dict
 from pytorch_lightning.callbacks import ModelCheckpoint
 import os
 
 
 # Configs
-resume_path = "GeoSynth/scripts/control_sd21_ini.ckpt"
+resume_path = "GeoSynthforLISS4/scripts/control_sd21_ini.ckpt"
 batch_size = 4
 logger_freq = 2000
 learning_rate = 1e-5
