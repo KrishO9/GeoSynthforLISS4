@@ -1,8 +1,8 @@
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 from data import Dataset
-from ..ControlNet.cldm.logger import ImageLogger
-from ..ControlNet.cldm.model import create_model, load_state_dict
+from ControlNet.cldm.logger import ImageLogger
+from ControlNet.cldm.model import create_model, load_state_dict
 from pytorch_lightning.callbacks import ModelCheckpoint
 import os
 
@@ -17,7 +17,7 @@ only_mid_control = False
 
 
 # First use cpu to load models. Pytorch Lightning will automatically move it to GPUs.
-model = create_model("GeoSynth/scripts/models/cldm_v21.yaml").cpu()
+model = create_model("GeoSynthforLISS4/scripts/models/cldm_v21.yaml").cpu()
 model.load_state_dict(load_state_dict(resume_path, location="cpu"))
 model.learning_rate = learning_rate
 model.sd_locked = sd_locked
@@ -30,11 +30,11 @@ checkpoint = ModelCheckpoint(
 )
 # Misc
 dataset = Dataset(
-    prompt_path="GeoSynth/scripts/prompt_with_locations.json",
-    location_embeds_path="GeoSynth/scripts/location_embeds.npy",
+    prompt_path="GeoSynthforLISS4/scripts/prompt_with_locations.json",
+    location_embeds_path="GeoSynthforLISS4/scripts/location_embeds.npy",
 )
 dataloader = DataLoader(
-    dataset, num_workers=8, batch_size=batch_size, shuffle=True, persistent_workers=True
+    dataset, num_workers=4, batch_size=batch_size, shuffle=True, persistent_workers=True
 )
 logger = ImageLogger(batch_frequency=logger_freq)
 trainer = pl.Trainer(
