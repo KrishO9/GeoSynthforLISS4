@@ -1,5 +1,5 @@
 model:
-  target: GeoSynth.scripts.geosynth.ControlLDM
+  target: GeoSynthforLISS4.scripts.geosynth.ControlLDM
   params:
     linear_start: 0.00085
     linear_end: 0.0120
@@ -19,7 +19,7 @@ model:
     only_mid_control: False
 
     control_stage_config:
-      target: GeoSynth.scripts.geosynth.ControlNet
+      target: GeoSynthforLISS4.scripts.geosynth.ControlNet
       params:
         use_checkpoint: True
         image_size: 32 # unused
@@ -37,7 +37,7 @@ model:
         legacy: False
 
     unet_config:
-      target: GeoSynth.scripts.geosynth.ControlledUnetModel
+      target: GeoSynthforLISS4.scripts.geosynth.ControlledUnetModel
       params:
         use_checkpoint: True
         image_size: 32 # unused
@@ -55,7 +55,7 @@ model:
         legacy: False
 
     first_stage_config:
-      target: GeoSynth.ControlNet.ldm.models.autoencoder.AutoencoderKL
+      target: GeoSynthforLISS4.ControlNet.ldm.models.autoencoder.AutoencoderKL
       params:
         embed_dim: 4
         monitor: val/rec_loss
@@ -79,7 +79,7 @@ model:
           target: torch.nn.Identity
 
     cond_stage_config:
-      target: GeoSynth.ControlNet.ldm.modules.encoders.modules.FrozenOpenCLIPEmbedder
+      target: GeoSynthforLISS4.ControlNet.ldm.modules.encoders.modules.FrozenOpenCLIPEmbedder
       params:
         freeze: True
         layer: "penultimate"
