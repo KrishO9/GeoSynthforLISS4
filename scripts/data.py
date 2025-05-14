@@ -21,8 +21,8 @@ class Dataset(Dataset):
         prompt = item["prompt"]
         loc_ind = item["class"]
 
-        source = cv2.imread("../" + source_filename)
-        target = cv2.imread("../" + target_filename)
+        source = cv2.imread(source_filename)
+        target = cv2.imread(target_filename)
 
         # Do not forget that OpenCV read images in BGR order.
         source = cv2.cvtColor(source, cv2.COLOR_BGR2RGB)
