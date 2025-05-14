@@ -8,7 +8,7 @@ import os
 
 
 # Configs
-resume_path = "scripts/control_sd21_ini.ckpt"
+resume_path = ""
 batch_size = 4
 logger_freq = 2000
 learning_rate = 1e-5
