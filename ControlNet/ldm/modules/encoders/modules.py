@@ -215,7 +215,11 @@ class FrozenOpenCLIPEmbedder(AbstractEncoder):
             padding = torch.zeros((tokens.shape[0], padding_size), dtype=tokens.dtype, device=tokens.device)
             tokens = torch.cat([tokens, padding], dim=1)
         # tokens should now be [batch_size, self.max_length]
+        elif tokens.shape[1] > self.max_length: # Truncate if longer
+            tokens = tokens[:, :self.max_length]
+        
         z = self.encode_with_transformer(tokens.to(self.device))
+        return z # <<< THIS IS THE FIX - ENSURE THIS LINE IS PRESENT AND CORRECTLY INDENTED
 
     def encode_with_transformer(self, text):
         x = self.model.token_embedding(text)  # [batch_size, n_ctx, d_model]
