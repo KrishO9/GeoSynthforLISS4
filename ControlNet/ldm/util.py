@@ -104,11 +104,11 @@ def get_obj_from_str(string, reload=False):
     imported_module = None
     try:
         if reload:
-            module_imp = importlib.import_module("scripts/"+module)
+            module_imp = importlib.import_module(module)
             importlib.reload(module_imp)
             imported_module = module_imp
         else:
-            imported_module = importlib.import_module("scripts/"+module, package=None)
+            imported_module = importlib.import_module(module, package=None)
         print(f"Successfully imported '{module}' with default method.")
         return getattr(imported_module, cls)
     except ModuleNotFoundError as e1:
