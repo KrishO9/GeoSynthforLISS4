@@ -1,4 +1,6 @@
 import importlib
+import sys
+import os
 
 import torch
 from torch import optim
@@ -81,12 +83,60 @@ def instantiate_from_config(config):
     return get_obj_from_str(config["target"])(**config.get("params", dict()))
 
 
+# def get_obj_from_str(string, reload=False):
+#     module, cls = string.rsplit(".", 1)
+#     if reload:
+#         module_imp = importlib.import_module(module)
+#         importlib.reload(module_imp)
+#     return getattr(importlib.import_module(module, package=None), cls)
+
 def get_obj_from_str(string, reload=False):
     module, cls = string.rsplit(".", 1)
-    if reload:
-        module_imp = importlib.import_module(module)
-        importlib.reload(module_imp)
-    return getattr(importlib.import_module(module, package=None), cls)
+    
+    print(f"--- In get_obj_from_str (ldm/util.py) ---")
+    print(f"Attempting to import module: '{module}', class: '{cls}'")
+    print(f"Current sys.path: {sys.path}")
+    print(f"Current CWD: {os.getcwd()}") # CWD of the subprocess
+
+    # Attempt 1: Default import (as original code)
+    imported_module = None
+    try:
+        if reload:
+            module_imp = importlib.import_module(module)
+            importlib.reload(module_imp)
+            imported_module = module_imp
+        else:
+            imported_module = importlib.import_module(module, package=None)
+        print(f"Successfully imported '{module}' with default method.")
+        return getattr(imported_module, cls)
+    except ModuleNotFoundError as e1:
+        print(f"Default importlib.import_module('{module}') failed: {e1}")
+        
+        # Attempt 2: Check if 'module' starts with 'scripts' and if PROJECT_ROOT is already on path
+        # This is usually covered by PYTHONPATH or CWD being on sys.path already.
+        # The original code SHOULD work if sys.path is correct and scripts/__init__.py exists.
+        # This explicit check is mostly for deeper debugging if the above fails.
+        #
+        # If your PROJECT_ROOT is '/kaggle/working/GeoSynthforLISS4'
+        # and it's already on sys.path (which it should be due to CWD and PYTHONPATH),
+        # an import of "scripts.geosynth" should be resolvable directly.
+
+        # One last check to see if the module string itself is the issue,
+        # or if there's some other conflict.
+        if module == "scripts.geosynth":
+            try:
+                print("Trying direct import of 'scripts.geosynth' for testing...")
+                import scripts.geosynth as sg
+                print("Direct import of 'scripts.geosynth' successful.")
+                if hasattr(sg, cls):
+                    print(f"Found class '{cls}' in directly imported 'scripts.geosynth'.")
+                    return getattr(sg, cls)
+                else:
+                    print(f"Class '{cls}' NOT found in directly imported 'scripts.geosynth'.")
+            except ImportError as e_direct:
+                print(f"Direct import of 'scripts.geosynth' also failed: {e_direct}")
+
+        raise e1 # Re-raise the original error if all attempts fail
 
 
 class AdamWwithEMAandWings(optim.Optimizer):
