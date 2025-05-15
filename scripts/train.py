@@ -9,7 +9,7 @@ import os
 
 # Configs
 resume_path = "prepared_control_checkpoint/control_sd21_ini.ckpt"
-batch_size = 4
+batch_size = 2
 logger_freq = 2000
 learning_rate = 1e-5
 sd_locked = True
@@ -34,14 +34,14 @@ dataset = Dataset(
     location_embeds_path="scripts/location_embeds.npy",
 )
 dataloader = DataLoader(
-    dataset, num_workers=4, batch_size=batch_size, shuffle=True, persistent_workers=True
+    dataset, num_workers=2, batch_size=batch_size, shuffle=True, persistent_workers=True
 )
 logger = ImageLogger(batch_frequency=logger_freq)
 trainer = pl.Trainer(
     accelerator="gpu",
     strategy="ddp",
     devices=2,
-    precision=32,
+    precision="16-mixed",
     max_epochs=42,
     callbacks=[logger, checkpoint],
     accumulate_grad_batches=16,
