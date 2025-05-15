@@ -94,7 +94,7 @@ def get_obj_from_str(string, reload=False):
     print(f"--- In get_obj_from_str (ldm/util.py) ---")
     print(f"Received target string: '{string}'") # <<< PRINT THE EXACT INPUT STRING
 
-    module, cls = string.rsplit(".", 0)
+    module, cls = string.rsplit(".", 1)
     
     print(f"Attempting to import module: '{module}', class: '{cls}'")
     print(f"Current sys.path for this subprocess: {sys.path}")
@@ -104,7 +104,7 @@ def get_obj_from_str(string, reload=False):
     imported_module = None
     try:
         if reload:
-            module_imp = importlib.import_module(module)
+            module_imp = importlib.import_module("scripts/"+module)
             importlib.reload(module_imp)
             imported_module = module_imp
         else:
