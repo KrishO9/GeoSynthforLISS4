@@ -1,5 +1,5 @@
 model:
-  target: ..scripts.geosynth.ControlLDM
+  target: scripts.geosynth.ControlLDM
   params:
     linear_start: 0.00085
     linear_end: 0.0120
@@ -55,7 +55,7 @@ model:
         legacy: False
 
     first_stage_config:
-      target: ldm.models.autoencoder.AutoencoderKL
+      target: ControlNet.ldm.models.autoencoder.AutoencoderKL
       params:
         embed_dim: 4
         monitor: val/rec_loss
@@ -79,7 +79,7 @@ model:
           target: torch.nn.Identity
 
     cond_stage_config:
-      target: ldm.modules.encoders.modules.FrozenOpenCLIPEmbedder
+      target: ControlNet.ldm.modules.encoders.modules.FrozenOpenCLIPEmbedder
       params:
         freeze: True
         layer: "penultimate"
