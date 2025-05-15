@@ -11,7 +11,19 @@ assert not os.path.exists(output_path), "Output filename already exists."
 assert os.path.exists(os.path.dirname(output_path)), "Output path is not valid."
 
 import torch
-from share import *
+
+import os
+import sys
+print(f"--- tool_add_control_sd21.py ---")
+print(f"__name__: {__name__}")
+print(f"__package__: {__package__}")
+print(f"os.getcwd(): {os.getcwd()}")
+print(f"sys.path: {sys.path}")
+print(f"Attempting to import '.share'")
+from .share import *
+print(f"Successfully imported share from tool_add_control_sd21.py")
+
+
 from .cldm.model import create_model
 
 
