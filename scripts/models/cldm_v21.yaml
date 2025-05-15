@@ -1,5 +1,5 @@
 model:
-  target: GeoSynthforLISS4.scripts.geosynth.ControlLDM
+  target: scripts.geosynth.ControlLDM
   params:
     linear_start: 0.00085
     linear_end: 0.0120
@@ -19,7 +19,7 @@ model:
     only_mid_control: False
 
     control_stage_config:
-      target: GeoSynthforLISS4.scripts.geosynth.ControlNet
+      target: scripts.geosynth.ControlNet
       params:
         use_checkpoint: True
         image_size: 32 # unused
@@ -37,7 +37,7 @@ model:
         legacy: False
 
     unet_config:
-      target: GeoSynthforLISS4.scripts.geosynth.ControlledUnetModel
+      target: scripts.geosynth.ControlledUnetModel
       params:
         use_checkpoint: True
         image_size: 32 # unused

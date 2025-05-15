@@ -91,12 +91,14 @@ def instantiate_from_config(config):
 #     return getattr(importlib.import_module(module, package=None), cls)
 
 def get_obj_from_str(string, reload=False):
+    print(f"--- In get_obj_from_str (ldm/util.py) ---")
+    print(f"Received target string: '{string}'") # <<< PRINT THE EXACT INPUT STRING
+
     module, cls = string.rsplit(".", 1)
     
-    print(f"--- In get_obj_from_str (ldm/util.py) ---")
     print(f"Attempting to import module: '{module}', class: '{cls}'")
-    print(f"Current sys.path: {sys.path}")
-    print(f"Current CWD: {os.getcwd()}") # CWD of the subprocess
+    print(f"Current sys.path for this subprocess: {sys.path}")
+    print(f"Current CWD for this subprocess: {os.getcwd()}")
 
     # Attempt 1: Default import (as original code)
     imported_module = None
