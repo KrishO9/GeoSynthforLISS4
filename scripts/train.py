@@ -9,7 +9,7 @@ import os
 
 # Configs
 resume_path = "prepared_control_checkpoint/control_sd21_ini.ckpt"
-batch_size = 1
+batch_size = 2
 logger_freq = 2000
 learning_rate = 1e-5
 sd_locked = True
@@ -39,14 +39,12 @@ dataloader = DataLoader(
 logger = ImageLogger(batch_frequency=logger_freq)
 trainer = pl.Trainer(
     accelerator="gpu",
-    # strategy="ddp", # Comment out for single GPU
-    devices=1,       # Use only one GPU
+    strategy="ddp",
+    devices=2,
     precision="16-mixed",
     max_epochs=1,
-    # max_steps=10, # Even fewer steps for a quick test
     callbacks=[logger, checkpoint],
-    accumulate_grad_batches=1 # If batch_size=1 (as per DataLoader with one GPU)
-                                 # and you want effective 32
+    accumulate_grad_batches=2,
 )
 
 # Train!
