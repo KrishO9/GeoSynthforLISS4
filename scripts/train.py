@@ -34,7 +34,7 @@ dataset = Dataset(
     location_embeds_path="scripts/location_embeds.npy",
 )
 dataloader = DataLoader(
-    dataset, num_workers=0, batch_size=batch_size, shuffle=True, persistent_workers=True
+    dataset, num_workers=1, batch_size=batch_size, shuffle=True, persistent_workers=True
 )
 logger = ImageLogger(batch_frequency=logger_freq)
 trainer = pl.Trainer(
