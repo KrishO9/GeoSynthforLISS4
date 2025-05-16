@@ -39,11 +39,11 @@ dataloader = DataLoader(
 logger = ImageLogger(batch_frequency=logger_freq)
 trainer = pl.Trainer(
     accelerator="gpu",
-    strategy="ddp",
+    strategy="ddp_find_unused_parameters_true",
     devices=2,
     precision="16-mixed",
     max_epochs=1,
-    max_steps=50,
+    max_steps=10,
     callbacks=[logger, checkpoint],
     accumulate_grad_batches=2,
 )
