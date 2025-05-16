@@ -39,12 +39,14 @@ dataloader = DataLoader(
 logger = ImageLogger(batch_frequency=logger_freq)
 trainer = pl.Trainer(
     accelerator="gpu",
-    strategy="ddp",
-    devices=1,
+    # strategy="ddp", # Comment out for single GPU
+    devices=1,       # Use only one GPU
     precision="16-mixed",
-    max_epochs=12,
+    max_epochs=1,
+    # max_steps=10, # Even fewer steps for a quick test
     callbacks=[logger, checkpoint],
-    accumulate_grad_batches=16,
+    accumulate_grad_batches=1 # If batch_size=1 (as per DataLoader with one GPU)
+                                 # and you want effective 32
 )
 
 # Train!
