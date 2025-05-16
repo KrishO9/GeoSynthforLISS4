@@ -9,7 +9,7 @@ import os
 
 # Configs
 resume_path = "prepared_control_checkpoint/control_sd21_ini.ckpt"
-batch_size = 2
+batch_size = 1
 logger_freq = 2000
 learning_rate = 1e-5
 sd_locked = True
@@ -42,7 +42,7 @@ trainer = pl.Trainer(
     strategy="ddp",
     devices=2,
     precision="16-mixed",
-    max_epochs=42,
+    max_epochs=14,
     callbacks=[logger, checkpoint],
     accumulate_grad_batches=16,
 )
