@@ -29,7 +29,7 @@ checkpoint = ModelCheckpoint(
 
 # Misc
 dataset = Dataset(
-    prompt_path="scripts/prompt_with_location.json",
+    prompt_path="scripts/prompt_with_location10.json",
     location_embeds_path="scripts/location_embeds.npy",
 )
 dataloader = DataLoader(
