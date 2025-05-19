@@ -8,7 +8,7 @@ import os
 
 # Configs
 resume_path = "prepared_control_checkpoint/control_sd21_ini.ckpt"
-batch_size = 1
+batch_size = 2
 logger_freq = 2000
 learning_rate = 1e-5
 sd_locked = True
