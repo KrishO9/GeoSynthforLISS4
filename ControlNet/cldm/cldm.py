@@ -99,8 +99,6 @@ class ControlNet(nn.Module):
                 context_dim is not None
             ), "Fool!! You forgot to include the dimension of your cross-attention conditioning..."
 
-        print(f'Inside Latent Dif{self.image_size}')
-
         if context_dim is not None:
             assert (
                 use_spatial_transformer
