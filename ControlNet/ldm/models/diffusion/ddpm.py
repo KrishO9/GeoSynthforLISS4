@@ -1431,7 +1431,6 @@ class LatentDiffusion(DDPM):
     ):
         if shape is None:
             shape = (batch_size, self.channels, self.image_size, self.image_size)
-            print(f'Inside Latent Diffusion {self.image_size}')
         if cond is not None:
             if isinstance(cond, dict):
                 cond = {
