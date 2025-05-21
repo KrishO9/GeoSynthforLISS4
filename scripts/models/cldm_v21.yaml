@@ -1,15 +1,16 @@
+# This is the overarching Latent Diffusion Model that integrates control.
 model:
-  target: scripts.geosynth.ControlLDM
+  target: scripts.geosynth.ControlLDM  
   params:
     linear_start: 0.00085
     linear_end: 0.0120
     num_timesteps_cond: 1
     log_every_t: 200
     timesteps: 1000
-    first_stage_key: "jpg"
-    cond_stage_key: "txt"
-    control_key: "hint"
-    image_size: 64
+    first_stage_key: "jpg" #The key in the input data batch that corresponds to the target image.
+    cond_stage_key: "txt" #The key for the text conditioning (e.g., prompts).
+    control_key: "hint"   #The key for the control signal input (e.g., Canny edges, depth map).
+    image_size: 64        #Number of channels in the latent space (typically 4 for SD's VAE).
     channels: 4
     cond_stage_trainable: false
     conditioning_key: crossattn
@@ -18,24 +19,27 @@ model:
     use_ema: False
     only_mid_control: False
 
+# ControlNet mirrors the encoder part of the main U-Net.
+#This module takes the hint as input, processes it, and produces outputs that are added to the main U-Net's activations.
     control_stage_config:
       target: scripts.geosynth.ControlNet
       params:
         use_checkpoint: True
         image_size: 32 # unused
-        in_channels: 4
-        hint_channels: 3
+        in_channels: 4    # it's taking input from the U-Net's latent space before any blocks, it would be 4
+        hint_channels: 3  # Number of channels in the input control signal (control_key: "hint")
         model_channels: 320
         attention_resolutions: [ 4, 2, 1 ]
-        num_res_blocks: 2
+        num_res_blocks: 2   #Number of residual blocks per resolution level.
         channel_mult: [ 1, 2, 4, 4 ]
         num_head_channels: 64 # need to fix for flash-attn
         use_spatial_transformer: True
         use_linear_in_transformer: True
         transformer_depth: 1
-        context_dim: 1024
+        context_dim: 1024  #Dimensionality of the conditioning context (e.g., text embeddings from CLIP).
         legacy: False
 
+#The main Denoising U-Net
     unet_config:
       target: scripts.geosynth.ControlledUnetModel
       params:
@@ -54,6 +58,7 @@ model:
         context_dim: 1024
         legacy: False
 
+# The class for the VAE. This compresses images into a lower-dimensional latent space and reconstructs them.
     first_stage_config:
       target: ControlNet.ldm.models.autoencoder.AutoencoderKL
       params:
@@ -61,12 +66,12 @@ model:
         monitor: val/rec_loss
         ddconfig:
           #attn_type: "vanilla-xformers"
-          double_z: true
-          z_channels: 4
-          resolution: 256
-          in_channels: 3
-          out_ch: 3
-          ch: 128
+          double_z: true  #The VAE encoder outputs both mean and log-variance for the latent distribution.
+          z_channels: 4   #Number of channels in the VAE's latent space.
+          resolution: 64 #The pixel-space resolution the VAE is designed for (e.g., 256x256 images)
+          in_channels: 3  # Input channels to the VAE encoder (RGB images).
+          out_ch: 3       # Output channels from the VAE decoder (RGB images).
+          ch: 128         #Base number of channels in the VAE's convolutional layers.
           ch_mult:
           - 1
           - 2
@@ -83,3 +88,9 @@ model:
       params:
         freeze: True
         layer: "penultimate"
+
+#It uses a pre-trained VAE (first_stage_config) to move between pixel space and latent space.
+#It uses a pre-trained, frozen OpenCLIP model (cond_stage_config) to get text embeddings from prompts.
+#The core is the unet_config, a U-Net that denoises latents, conditioned on text embeddings.
+#Crucially, the control_stage_config defines the ControlNet module, which takes an additional "hint" image, processes it through a network architecture that mirrors the U-Net's encoder, and injects its outputs into the main U-Net to guide the image generation process.
+#The model block ties all these components together and defines the overall training/inference behavior.
