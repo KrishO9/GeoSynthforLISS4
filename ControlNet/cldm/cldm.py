@@ -92,7 +92,9 @@ class ControlNet(nn.Module):
         disable_middle_self_attn=False,
         use_linear_in_transformer=False,
     ):
+        
         super().__init__()
+        print(f'--------------Inside controlnet image size: {image_size}---------------')
         if use_spatial_transformer:
             assert (
                 context_dim is not None
