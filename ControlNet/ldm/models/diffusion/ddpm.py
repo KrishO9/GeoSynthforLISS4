@@ -1418,7 +1418,7 @@ class LatentDiffusion(DDPM):
     def sample(
         self,
         cond,
-        batch_size=4,
+        batch_size=16,
         return_intermediates=False,
         x_T=None,
         verbose=True,
@@ -1431,6 +1431,7 @@ class LatentDiffusion(DDPM):
     ):
         if shape is None:
             shape = (batch_size, self.channels, self.image_size, self.image_size)
+            print(f'Inside Latent Diffusion {self.image_size}')
         if cond is not None:
             if isinstance(cond, dict):
                 cond = {
@@ -1445,7 +1446,6 @@ class LatentDiffusion(DDPM):
                     if isinstance(cond, list)
                     else cond[:batch_size]
                 )
-            
         return self.p_sample_loop(
             cond,
             shape,
@@ -1463,7 +1463,6 @@ class LatentDiffusion(DDPM):
         if ddim:
             ddim_sampler = DDIMSampler(self)
             shape = (self.channels, self.image_size, self.image_size)
-            print(f'Inside Latent Diffusion block {self.image_size}')
             samples, intermediates = ddim_sampler.sample(
                 ddim_steps, batch_size, shape, cond, verbose=False, **kwargs
             )
