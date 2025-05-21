@@ -36,7 +36,7 @@ def get_node_name(name, parent_name):
     return True, name[len(parent_name) :]
 
 #A new, "scratch" ControlNet model is created. Its architecture is defined by the cldm_v21.yaml configuration file
-model = create_model(config_path="ControlNet/models/cldm_v21.yaml")
+model = create_model(config_path="scripts/models/cldm_v21.yaml")
 
 pretrained_weights = torch.load(input_path,weights_only=False)
 if "state_dict" in pretrained_weights:
