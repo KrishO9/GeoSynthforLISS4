@@ -1,11 +1,14 @@
 import torch
 import einops
 
-from ..ldm.modules.encoders import modules
-from ..ldm.modules import attention
+# from ..ldm.modules.encoders import modules
+# from ..ldm.modules import attention
 
 from transformers import logging
-from ..ldm.modules.attention import default
+# from ..ldm.modules.attention import default
+from ..ldm.modules.encoders import modules as ldm_encoder_modules
+from ..ldm.modules import attention as ldm_attention_module
+from ..ldm.modules.attention import default as attention_default
 
 
 def disable_verbosity():
@@ -15,15 +18,14 @@ def disable_verbosity():
 
 
 def enable_sliced_attention():
-    ldm.modules.attention.CrossAttention.forward = _hacked_sliced_attentin_forward
-    print("Enabled sliced_attention.")
+    ldm_attention_module.CrossAttention.forward = _hacked_sliced_attentin_forward
     return
 
 
 def hack_everything(clip_skip=0):
     disable_verbosity()
-    ldm.modules.encoders.modules.FrozenCLIPEmbedder.forward = _hacked_clip_forward
-    ldm.modules.encoders.modules.FrozenCLIPEmbedder.clip_skip = clip_skip
+    ldm_encoder_modules.FrozenCLIPEmbedder.forward = _hacked_clip_forward
+    ldm_encoder_modules.FrozenCLIPEmbedder.clip_skip = clip_skip
     print("Enabled clip hacks.")
     return
 
