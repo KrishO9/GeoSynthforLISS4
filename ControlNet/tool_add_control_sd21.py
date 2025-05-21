@@ -35,25 +35,30 @@ def get_node_name(name, parent_name):
         return False, ""
     return True, name[len(parent_name) :]
 
-
+#A new, "scratch" ControlNet model is created. Its architecture is defined by the cldm_v21.yaml configuration file
 model = create_model(config_path="ControlNet/models/cldm_v21.yaml")
 
 pretrained_weights = torch.load(input_path,weights_only=False)
 if "state_dict" in pretrained_weights:
     pretrained_weights = pretrained_weights["state_dict"]
 
+# Gets the state dictionary (layer names and their initial random weights) of the newly created ControlNet model.
 scratch_dict = model.state_dict()
 
 target_dict = {}
-for k in scratch_dict.keys():
-    is_control, name = get_node_name(k, "control_")
+for k in scratch_dict.keys(): 
+    is_control, name = get_node_name(k, "control_") # Checks if the layer k is a ControlNet-specific layer (i.e., its name starts with "control_").
+# ControlNet's control-specific layers are initialized by copying weights from corresponding layers in the base SD model's diffusion U-Net. For example, a layer control_input_block_X in ControlNet will try to get its initial weights from model.diffusion_input_block_X of the SD2.1 model.
     if is_control:
         copy_k = "model.diffusion_" + name
     else:
         copy_k = k
+#If the corresponding layer (copy_k) exists in the loaded SD2.1 weights.
     if copy_k in pretrained_weights:
+#The weights from the SD2.1 model are copied to the target_dict for the current ControlNet layer k
         target_dict[k] = pretrained_weights[copy_k].clone()
     else:
+#The layer in the ControlNet model keeps its initial (random or zero, depending on create_model) weights.
         target_dict[k] = scratch_dict[k].clone()
         print(f"These weights are newly added: {k}")
 

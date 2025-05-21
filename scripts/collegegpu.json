@@ -1,61 +1,61 @@
 [
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00009.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00009.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00009.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00009.png",
         "prompt": "The image features a red and green landscape with a mountainous terrain. The landscape is covered in a mix of red and green colors, creating a vibrant and lush appearance. The mountainous area is filled with various shapes and sizes of hills, providing a sense of depth and complexity to the scene. The overall atmosphere of the image is captivating and visually appe",
         "class": 1
     },
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00010.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00010.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00010.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00010.png",
         "prompt": "The image is a satellite view of a mountainous area with a red hue. The terrain is covered in red and green colors, creating a striking visual effect. The mountainous region is filled with trees, and there are several buildings scattered throughout the landscape. The buildings are of various sizes and are located at different elevations on the mountain. The overall scene is a unique and",
         "class": 2
     },
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00011.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00011.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00011.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00011.png",
         "prompt": "The image features a close-up view of a red rock wall with a variety of textures and colors. The rock wall is covered in a mix of red and green hues, creating a visually striking scene. The rock wall is also covered in a multitude of small holes, which add to the intricate and unique appearance of the rock formation.",
         "class": 3
     },
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00012.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00012.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00012.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00012.png",
         "prompt": "The image features a close-up view of a rocky surface with a mix of red and purple hues. The rocky terrain appears to be a combination of a cliff and a mountain. The colorful rock formations create a visually striking scene.",
         "class": 4
     },
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00013.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00013.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00013.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00013.png",
         "prompt": "The image features a close-up view of a rocky surface with a vibrant pink hue. The rocky terrain is covered in a variety of textures and colors, creating a visually striking scene. The pink color of the rocky surface adds a unique and captivating element to the image.",
         "class": 5
     },
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00015.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00015.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00015.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00015.png",
         "prompt": "The image is a satellite view of a mountainous region with a red hue. The terrain is characterized by a mix of red and green colors, indicating a diverse landscape. The mountains are covered in a variety of vegetation, including trees and shrubs. The terrain is also dotted with a few small lakes, adding to the natural beauty of the area. The",
         "class": 6
     },
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00016.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00016.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00016.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00016.png",
         "prompt": "The image is a close-up of a mountainous area with a red hue, possibly due to the presence of red pigment in the soil. The terrain is covered with a mix of green and red vegetation, creating a vibrant and lush landscape. The mountainous region is filled with trees, and the overall scene is quite picturesque.",
         "class": 7
     },
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00018.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00018.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00018.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00018.png",
         "prompt": "The image features a vibrant, colorful mountain landscape with a mix of red and green hues. The mountain is covered in a variety of trees, creating a lush and diverse environment. The trees are scattered throughout the mountain, with some closer to the foreground and others further in the background. The scene is a beautiful representation of the natural world, showcasing",
         "class": 8
     },
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00019.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00019.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00019.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00019.png",
         "prompt": "The image features a vibrant, colorful mountain landscape with a mix of green, red, and purple hues. The mountain is covered in a variety of colors, creating a visually striking scene. The mountain's surface is covered in a multitude of colors, making it an eye-catching and unique landscape.",
         "class": 9
     },
     {
-        "source": "/kaggle/input/geosynth64//osm_aligned_patches/osm_aligned_patch_00020.png",
-        "target": "/kaggle/input/geosynth64//liss4_patches/liss4_patch_00020.png",
+        "source": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/osm_aligned_patches/osm_aligned_patch_00020.png",
+        "target": "/home/btech/2022/krish.kahnani22b/GeoSynth/1/liss4_patches/liss4_patch_00020.png",
         "prompt": "The image features a close-up view of a rocky mountain with a vibrant red hue. The mountain is covered in a variety of colors, including red, green, and purple. The scene is reminiscent of a painting, with the mountain's surface appearing to be a canvas of different colors. The mountain's unique and artistic appearance",
         "class": 10
     }
