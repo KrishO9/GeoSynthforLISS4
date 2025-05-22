@@ -68,7 +68,7 @@ model:
           #attn_type: "vanilla-xformers"
           double_z: true  #The VAE encoder outputs both mean and log-variance for the latent distribution.
           z_channels: 4   #Number of channels in the VAE's latent space.
-          resolution: 256 #The pixel-space resolution the VAE is designed for (e.g., 256x256 images)
+          resolution: 64 #The pixel-space resolution the VAE is designed for (e.g., 256x256 images)
           in_channels: 3  # Input channels to the VAE encoder (RGB images).
           out_ch: 3       # Output channels from the VAE decoder (RGB images).
           ch: 128         #Base number of channels in the VAE's convolutional layers.
