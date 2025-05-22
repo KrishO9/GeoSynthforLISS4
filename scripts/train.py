@@ -5,6 +5,7 @@ from ControlNet.cldm.logger import ImageLogger
 from ControlNet.cldm.model import create_model, load_state_dict
 from pytorch_lightning.callbacks import ModelCheckpoint
 import os
+import torch 
 
 # Configs
 resume_path = "prepared_control_checkpoint/control_sd21_ini.ckpt"
@@ -40,6 +41,11 @@ dataloader = DataLoader(
     persistent_workers=False
 )
 logger = ImageLogger(batch_frequency=logger_freq)
+
+
+torch.cuda.empty_cache()
+print("CUDA cache emptied.")
+
 trainer = pl.Trainer(
     accelerator="gpu",
     strategy="ddp_find_unused_parameters_true",
