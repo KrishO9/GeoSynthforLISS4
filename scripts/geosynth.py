@@ -2,6 +2,7 @@ import einops
 import torch
 import torch as th
 import torch.nn as nn
+import bitsandbytes.optim as bnb_optim
 
 from ControlNet.ldm.modules.diffusionmodules.util import (
     conv_nd,
@@ -754,13 +755,33 @@ class ControlLDM(LatentDiffusion):
         return samples, intermediates
 
     def configure_optimizers(self):
-        lr = self.learning_rate
-        params = list(self.control_model.parameters())
+        lr = self.learning_rate # self.learning_rate should be set on the instance
+        
+        params_to_optimize = []
+        if hasattr(self, 'control_model'):
+            params_to_optimize.extend(list(self.control_model.parameters()))
+        else:
+            raise AttributeError("ControlLDM instance does not have 'control_model'. Cannot configure optimizer.")
+
+        # Check sd_locked attribute which should be set on the instance by the training script
         if not self.sd_locked:
-            params += list(self.model.diffusion_model.output_blocks.parameters())
-            params += list(self.model.diffusion_model.out.parameters())
-        opt = torch.optim.AdamW(params, lr=lr)
-        return opt
+            print("sd_locked is False: Adding U-Net output_blocks and out parameters to optimizer.")
+            if hasattr(self.model, 'diffusion_model') and \
+               hasattr(self.model.diffusion_model, 'output_blocks') and \
+               hasattr(self.model.diffusion_model, 'out'):
+                params_to_optimize += list(self.model.diffusion_model.output_blocks.parameters())
+                params_to_optimize += list(self.model.diffusion_model.out.parameters())
+            else:
+                print("WARNING: Could not find U-Net output_blocks/out for sd_locked=False.")
+        
+        if not params_to_optimize:
+            raise ValueError("No parameters found to optimize. Check model structure and sd_locked setting.")
+
+        print(f"Configuring AdamW8bit with learning rate {lr} for {len(params_to_optimize)} parameter groups.")
+        # Adjust weight_decay as needed. 1e-2 is a common default for AdamW.
+        # If your original model used 0.0, use that.
+        optimizer = bnb_optim.AdamW8bit(params_to_optimize, lr=lr, weight_decay=1e-2) 
+        return optimizer
 
     def low_vram_shift(self, is_diffusing):
         if is_diffusing:
