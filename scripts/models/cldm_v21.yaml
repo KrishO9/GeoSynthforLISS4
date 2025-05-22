@@ -25,7 +25,7 @@ model:
       target: scripts.geosynth.ControlNet
       params:
         use_checkpoint: True
-        image_size: 32 # unused
+        image_size: 8 # unused
         in_channels: 4    # it's taking input from the U-Net's latent space before any blocks, it would be 4
         hint_channels: 3  # Number of channels in the input control signal (control_key: "hint")
         model_channels: 320
@@ -44,7 +44,7 @@ model:
       target: scripts.geosynth.ControlledUnetModel
       params:
         use_checkpoint: True
-        image_size: 32 #unused
+        image_size: 8 #unused
         in_channels: 4
         out_channels: 4
         model_channels: 320

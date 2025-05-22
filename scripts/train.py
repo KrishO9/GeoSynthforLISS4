@@ -48,7 +48,7 @@ print("CUDA cache emptied.")
 
 trainer = pl.Trainer(
     accelerator="gpu",
-    strategy="ddp_find_unused_parameters_true",
+    strategy="single_device",
     devices=1,
     precision="16-mixed",
     max_epochs=1,
