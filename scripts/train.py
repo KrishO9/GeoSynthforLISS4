@@ -8,7 +8,7 @@ import os
 import torch 
 
 # Configs
-resume_path = "/kaggle/working/GeoSynthforLISS4/ControlNet/models/control_sd21_ini.ckpt"
+resume_path = "ControlNet/models/control_sd21_ini.ckpt"
 batch_size = 2
 logger_freq = 2000
 learning_rate = 1e-5
