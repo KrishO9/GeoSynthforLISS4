@@ -1,0 +1,38 @@
+[
+    {
+        "source": "/kaggle/input/georeal/osm_18/osm_tile_18_42095_101321.jpeg",
+        "target": "/kaggle/input/georeal/osm_paired_bing/bing_tile_18_42095_101321.jpeg",
+        "prompt": "The image is a black and white photo of a neighborhood, featuring a street view of a residential area with houses and cars. The photo captures the essence of a small town, showcasing the houses and vehicles in the area.",
+        "class": 1
+    },
+    {
+        "source": "/kaggle/input/georeal/osm_18/osm_tile_18_42021_101240.jpeg",
+        "target": "/kaggle/input/georeal/osm_paired_bing/bing_tile_18_42021_101240.jpeg",
+        "prompt": "The image is a satellite view of a residential neighborhood, featuring a street with houses and cars. The street is lined with houses, and there are several cars parked or driving along the road. The neighborhood appears to be well-maintained and organized, with a mix of residential and commercial buildings.",
+        "class": 2
+    },
+    {
+        "source": "/kaggle/input/georeal/osm_18/osm_tile_18_42234_101537.jpeg",
+        "target": "/kaggle/input/georeal/osm_paired_bing/bing_tile_18_42234_101537.jpeg",
+        "prompt": "The image is an aerial view of a residential neighborhood, showcasing the houses and their surroundings. The neighborhood is located near a street, and there are several cars parked in the area. The image provides a clear perspective of the houses and their positions within the neighborhood.",
+        "class": 3
+    },
+    {
+        "source": "/kaggle/input/georeal/osm_18/osm_tile_18_42179_101541.jpeg",
+        "target": "/kaggle/input/georeal/osm_paired_bing/bing_tile_18_42179_101541.jpeg",
+        "prompt": "The image features a large, empty field with a dirt road running through it. The field is situated near a residential area, as evidenced by the presence of houses in the background. The road appears to be empty, with no visible vehicles or pedestrians. The scene gives a sense of openness and tranquility, as the field is devoid",
+        "class": 4
+    },
+    {
+        "source": "/kaggle/input/georeal/osm_18/osm_tile_18_42359_101423.jpeg",
+        "target": "/kaggle/input/georeal/osm_paired_bing/bing_tile_18_42359_101423.jpeg",
+        "prompt": "The image is a satellite view of a construction site, featuring a large dirt field with a pile of dirt and a large hole in the ground. There are also some trucks and a crane visible in the scene, indicating ongoing construction activities.",
+        "class": 7
+    },
+    {
+        "source": "/kaggle/input/georeal/osm_18/osm_tile_18_42427_101377.jpeg",
+        "target": "/kaggle/input/georeal/osm_paired_bing/bing_tile_18_42427_101377.jpeg",
+        "prompt": "The image is a bird's eye view of a residential neighborhood, featuring a street with houses, cars, and a bus. The street is lined with houses, and there are several cars parked along the street. A bus is also visible on the street, adding to the overall atmosphere of the neighborhood.",
+        "class": 9
+    }
+]
