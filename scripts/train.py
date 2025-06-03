@@ -23,7 +23,7 @@ model.learning_rate = learning_rate
 model.sd_locked = sd_locked
 model.only_mid_control = only_mid_control
 
-checkpoint_callback = ModelCheckpoint(
+checkpoint = ModelCheckpoint(
     dirpath=os.path.join("/content/", "checkpoint", "geosynth"), # Save to local Colab disk
     filename="model_geosynth",
     every_n_train_steps=40, # Or your desired frequency
