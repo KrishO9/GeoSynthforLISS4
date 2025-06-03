@@ -6,6 +6,7 @@ from ControlNet.cldm.model import create_model, load_state_dict
 from pytorch_lightning.callbacks import ModelCheckpoint
 import os
 import torch 
+from pytorch_lightning.strategies import DDPStrategy
 
 # Configs
 resume_path = "prepared_checkpoint/control_sd21_ini.ckpt"
@@ -50,7 +51,7 @@ print("CUDA cache emptied.")
 
 trainer = pl.Trainer(
     accelerator="gpu",
-    strategy="ddp",
+    strategy=DDPStrategy(find_unused_parameters=True),
     devices=1,
     precision="16-mixed",
     max_epochs=1,
