@@ -24,9 +24,10 @@ model.sd_locked = sd_locked
 model.only_mid_control = only_mid_control
 
 checkpoint = ModelCheckpoint(
-    dirpath=os.path.join("checkpoint", "geosynth"),
+    dirpath=os.path.join("/content/drive/MyDrive", "checkpoint"),
     filename="model_geosynth",
-    every_n_train_steps=150,
+    every_n_train_steps=40,
+    save_last=True,
 )
 
 # Misc
@@ -54,8 +55,7 @@ trainer = pl.Trainer(
     strategy=DDPStrategy(find_unused_parameters=True),
     devices=1,
     precision="16-mixed",
-    max_epochs=1,
-    max_steps=10,
+    max_epochs=8,
     callbacks=[logger, checkpoint],
     accumulate_grad_batches=1,
 )
