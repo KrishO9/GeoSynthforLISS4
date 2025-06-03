@@ -23,13 +23,13 @@ import numpy as np
 from huggingface_hub import hf_hub_download
 
 
-df = pd.read_csv("/kaggle/working/input_data_list_cleaned.csv")
+df = pd.read_csv("/content/drive/MyDrive/Data/input_data_list.csv")
 device = "cpu"
 
 locs = torch.tensor(np.array(df[["X", "Y"]])).cpu()
 
 import sys
-sys.path.append('/kaggle/working/satclip/satclip')
+sys.path.append('../../satclip/satclip')
 
 from load import get_satclip
 

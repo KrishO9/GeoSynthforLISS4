@@ -5,7 +5,7 @@ import os # Import os module
 from torch.utils.data import Dataset as TorchDataset # Use an alias to avoid confusion
 
 class Dataset(TorchDataset): # Inherit from the aliased TorchDataset
-    def __init__(self, prompt_path, location_embeds_path, image_base_dir="/kaggle/input/geosynthdata"):
+    def __init__(self, prompt_path, location_embeds_path, image_base_dir="/content/drive/MyDrive/Data"):
     # def __init__(self, prompt_path, location_embeds_path, image_base_dir="C:/Users/gpu20/Desktop/test/1"):    
     # def __init__(self, prompt_path, location_embeds_path, image_base_dir="/home/btech/2022/krish.kahnani22b/GeoSynth/1"):
         # It's safer to open and close the file properly
