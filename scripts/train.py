@@ -9,7 +9,7 @@ import torch
 
 # Configs
 resume_path = "prepared_checkpoint/control_sd21_ini.ckpt"
-batch_size = 2
+batch_size = 1
 logger_freq = 2000
 learning_rate = 1e-5
 sd_locked = True
@@ -51,7 +51,7 @@ print("CUDA cache emptied.")
 trainer = pl.Trainer(
     accelerator="gpu",
     strategy="ddp",
-    devices=2,
+    devices=1,
     precision="16-mixed",
     max_epochs=1,
     max_steps=10,
