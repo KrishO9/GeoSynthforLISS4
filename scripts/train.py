@@ -30,8 +30,10 @@ checkpoint = ModelCheckpoint(
 
 # Misc
 dataset = Dataset(
-    prompt_path="scripts/prompt_with_location.json",
-    location_embeds_path="scripts/location_embeds.npy",
+    # prompt_path="scripts/prompt_with_location.json",
+    # location_embeds_path="scripts/location_embeds.npy",
+    prompt_path="/content/drive/MyDrive/Data/prompt_with_location.json",
+    location_embeds_path="/content/drive/MyDrive/Data/location_embeds.npy",
 )
 dataloader = DataLoader(
     dataset,
