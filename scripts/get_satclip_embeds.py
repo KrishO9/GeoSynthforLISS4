@@ -23,7 +23,8 @@ import numpy as np
 from huggingface_hub import hf_hub_download
 
 
-df = pd.read_csv("/content/drive/MyDrive/Data/input_data_list.csv")
+df = pd.read_csv("/content/drive/MyDrive/exp_dataset/input_data_list.csv")
+#  df = pd.read_csv("input_data_list.csv")
 device = "cpu"
 
 locs = torch.tensor(np.array(df[["X", "Y"]])).cpu()
